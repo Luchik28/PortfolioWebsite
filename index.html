@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Taich - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            padding: 60px 0 20px 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            color: #222;
+        }
+
+        .projects-section {
+            padding: 20px 0;
+        }
+
+        .projects-section h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 40px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding: 10px 0;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .project-card {
+            min-width: 500px;
+            height: 400px;
+            background: #f8f8f8;
+            border-radius: 12px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: grab;
+        }
+
+        .project-card:active {
+            cursor: grabbing;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .project-card h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .project-card p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .project-card .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .project-card .tag {
+            background: #e0e0e0;
+            color: #666;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+
+
+        .all-projects-section {
+            padding: 60px 0;
+        }
+
+        .all-projects-section h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: #555;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-card {
+            background: #f8f8f8;
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            min-height: 250px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .grid-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .grid-card h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .grid-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .grid-card .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .grid-card .tag {
+            background: #e0e0e0;
+            color: #666;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .project-card {
+                min-width: 350px;
+                height: 350px;
+            }
+
+            .project-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <h1>Hi, I'm Daniel</h1>
+        </section>
+
+        <section class="projects-section">
+            <h2>Here are some things I've done</h2>
+            
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="project-card">
+                        <h3>Project Title 1</h3>
+                        <p>A brief description of this amazing project. Replace this with details about what you built and the technologies you used.</p>
+                        <div class="tags">
+                            <span class="tag">Technology 1</span>
+                            <span class="tag">Technology 2</span>
+                            <span class="tag">Technology 3</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Project Title 2</h3>
+                        <p>A brief description of this amazing project. Replace this with details about what you built and the technologies you used.</p>
+                        <div class="tags">
+                            <span class="tag">Technology 1</span>
+                            <span class="tag">Technology 2</span>
+                            <span class="tag">Technology 3</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Project Title 3</h3>
+                        <p>A brief description of this amazing project. Replace this with details about what you built and the technologies you used.</p>
+                        <div class="tags">
+                            <span class="tag">Technology 1</span>
+                            <span class="tag">Technology 2</span>
+                            <span class="tag">Technology 3</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Project Title 4</h3>
+                        <p>A brief description of this amazing project. Replace this with details about what you built and the technologies you used.</p>
+                        <div class="tags">
+                            <span class="tag">Technology 1</span>
+                            <span class="tag">Technology 2</span>
+                            <span class="tag">Technology 3</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Project Title 5</h3>
+                        <p>A brief description of this amazing project. Replace this with details about what you built and the technologies you used.</p>
+                        <div class="tags">
+                            <span class="tag">Technology 1</span>
+                            <span class="tag">Technology 2</span>
+                            <span class="tag">Technology 3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="all-projects-section">
+            <h2>All Projects</h2>
+            <div class="projects-grid">
+                <div class="grid-card">
+                    <h3>Project 1</h3>
+                    <p>Description of this project and what technologies were used to build it.</p>
+                    <div class="tags">
+                        <span class="tag">Tech 1</span>
+                        <span class="tag">Tech 2</span>
+                    </div>
+                </div>
+                <div class="grid-card">
+                    <h3>Project 2</h3>
+                    <p>Description of this project and what technologies were used to build it.</p>
+                    <div class="tags">
+                        <span class="tag">Tech 1</span>
+                        <span class="tag">Tech 2</span>
+                    </div>
+                </div>
+                <div class="grid-card">
+                    <h3>Project 3</h3>
+                    <p>Description of this project and what technologies were used to build it.</p>
+                    <div class="tags">
+                        <span class="tag">Tech 1</span>
+                        <span class="tag">Tech 2</span>
+                    </div>
+                </div>
+                <div class="grid-card">
+                    <h3>Project 4</h3>
+                    <p>Description of this project and what technologies were used to build it.</p>
+                    <div class="tags">
+                        <span class="tag">Tech 1</span>
+                        <span class="tag">Tech 2</span>
+                    </div>
+                </div>
+                <div class="grid-card">
+                    <h3>Project 5</h3>
+                    <p>Description of this project and what technologies were used to build it.</p>
+                    <div class="tags">
+                        <span class="tag">Tech 1</span>
+                        <span class="tag">Tech 2</span>
+                    </div>
+                </div>
+                <div class="grid-card">
+                    <h3>Project 6</h3>
+                    <p>Description of this project and what technologies were used to build it.</p>
+                    <div class="tags">
+                        <span class="tag">Tech 1</span>
+                        <span class="tag">Tech 2</span>
+                    </div>
+                </div>
+                <div class="grid-card">
+                    <h3>Project 7</h3>
+                    <p>Description of this project and what technologies were used to build it.</p>
+                    <div class="tags">
+                        <span class="tag">Tech 1</span>
+                        <span class="tag">Tech 2</span>
+                    </div>
+                </div>
+                <div class="grid-card">
+                    <h3>Project 8</h3>
+                    <p>Description of this project and what technologies were used to build it.</p>
+                    <div class="tags">
+                        <span class="tag">Tech 1</span>
+                        <span class="tag">Tech 2</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const track = document.getElementById('carouselTrack');
+        const cards = Array.from(track.children);
+        
+        // Clone all cards and append them for infinite scroll
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            track.appendChild(clone);
+        });
+        
+        // Clone again and prepend for backward infinite scroll
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            track.insertBefore(clone, track.firstChild);
+        });
+        
+        // Start at the middle set of cards
+        const cardWidth = cards[0].offsetWidth + 40; // width + gap
+        track.scrollLeft = cardWidth * cards.length;
+        
+        // Handle infinite scroll
+        track.addEventListener('scroll', () => {
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            const threshold = cardWidth;
+            
+            // If scrolled near the end, jump back to middle
+            if (track.scrollLeft >= maxScroll - threshold) {
+                track.scrollLeft = cardWidth * cards.length;
+            }
+            
+            // If scrolled near the beginning, jump to middle from end
+            if (track.scrollLeft <= threshold) {
+                track.scrollLeft = cardWidth * cards.length;
+            }
+        });
+        
+        // Autoscroll functionality
+        let isHovering = false;
+        let autoScrollInterval;
+        
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                if (!isHovering) {
+                    track.scrollLeft += 1;
+                }
+            }, 20);
+        }
+        
+        // Pause autoscroll on hover
+        track.addEventListener('mouseenter', () => {
+            isHovering = true;
+        });
+        
+        track.addEventListener('mouseleave', () => {
+            isHovering = false;
+        });
+        
+        // Start autoscroll
+        startAutoScroll();
+    </script>
+</body>
+</html>
