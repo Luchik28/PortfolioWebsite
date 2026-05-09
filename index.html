@@ -53,23 +53,18 @@
 
         .carousel-track {
             display: flex;
-            gap: 40px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
+            gap: 20px;
+            flex-wrap: nowrap;
             padding: 10px 0;
         }
 
-        .carousel-track::-webkit-scrollbar {
-            display: none;
-        }
-
         .project-card {
-            min-width: 500px;
-            height: 400px;
+            flex: 1;
+            min-width: 0;
+            height: auto;
             background: #f8f8f8;
             border-radius: 12px;
-            padding: 40px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -122,8 +117,6 @@
             background: #333;
             color: #fff;
         }
-
-
 
         .all-projects-section {
             padding: 60px 0;
@@ -202,7 +195,7 @@
 
             .project-card {
                 min-width: 350px;
-                height: 350px;
+                height: 400px;
             }
 
             .project-card h3 {
@@ -228,6 +221,7 @@
                 <div class="carousel-track" id="carouselTrack">
                     <div class="project-card">
                         <h3>StudyCal</h3>
+                        <p class="date">June 2025 - February 2026</p>
                         <p>A web based Calendar app orientated towards students that organizes your day, and also critiques your schedule, with the goal of creating a more balanced, optimized schedule.</p>
                         <div class="tags">
                             <a class="tag" href="https://github.com/Luchik28/StudyCal" target="_blank">Github</a>
@@ -236,6 +230,7 @@
                     </div>
                     <div class="project-card">
                         <h3>Tailor Tab</h3>
+                        <p class="date">December 2024 - April 2025</p>
                         <p>A Chrome extension that customizes new tab pages with useful widgets and a personalized design.</p>
                         <div class="tags">
                             <a class="tag" href="https://github.com/Luchik28/New-Tab" target="_blank">Github</a>
@@ -243,15 +238,8 @@
                         </div>
                     </div>
                     <div class="project-card">
-                        <h3>Problem Scraper</h3>
-                        <p>A Python Script that scans Reddit for people complaining about things that could be solved. It also searches to see if a solution already exists, resulting in a list of potential project ideas.</p>
-                        <div class="tags">
-                            <a class="tag" href="https://github.com/Luchik28/ProblemScraper" target="_blank">Github</a>
-                            <a class="tag" href="https://problem-scraper.vercel.app/" target="_blank">Website</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
                         <h3>Education Youtube Algorithm Filter</h3>
+                        <p class="date">October 2025</p>
                         <p>A Chrome extention that filters the Youtube Home page for potentially non-educational content, helping users watch more productive content.</p>
                         <div class="tags">
                             <a class="tag" href="https://github.com/Luchik28/Better-YT-Algorithm" target="_blank">Github</a>
@@ -266,23 +254,8 @@
             <h2>All Projects</h2>
             <div class="projects-grid">
                 <div class="grid-card">
-                    <h3>StudyCal</h3>
-                    <p>A web based Calendar app orientated towards students that organizes your day, and also critiques your schedule, with the goal of creating a more balanced, optimized schedule.</p>
-                    <div class="tags">
-                        <a class="tag" href="https://github.com/Luchik28/StudyCal" target="_blank">Github</a>
-                        <a class="tag" href="https://studycal.app/" target="_blank">Website</a>
-                    </div>
-                </div>
-                <div class="grid-card">
-                    <h3>Tailor Tab</h3>
-                    <p>A Chrome extension that customizes new tab pages with useful widgets and a personalized design.</p>
-                    <div class="tags">
-                        <a class="tag" href="https://github.com/Luchik28/New-Tab" target="_blank">Github</a>
-                        <a class="tag" href="https://chromewebstore.google.com/detail/tailor-tab/agaifpcfjjklbgjppedbdbmjmindackb" target="_blank">Chrome Web Store</a>
-                    </div>
-                </div>
-                <div class="grid-card">
                     <h3>Problem Scraper</h3>
+                    <p class="date">December 2025</p>
                     <p>A Python Script that scans Reddit for people complaining about things that could be solved. It also searches to see if a solution already exists, resulting in a list of potential project ideas.</p>
                     <div class="tags">
                         <a class="tag" href="https://github.com/Luchik28/ProblemScraper" target="_blank">Github</a>
@@ -290,115 +263,77 @@
                     </div>
                 </div>
                 <div class="grid-card">
-                    <h3>Education Youtube Algorithm Filter</h3>
-                    <p>A Chrome extention that filters the Youtube Home page for potentially non-educational content, helping users watch more productive content.</p>
+                    <h3>AI Contribution Calculator</h3>
+                    <p class="date">November 2025</p>
+                    <p>A tool that scans your social media profiles to calculate how much data you're generating that can be used to train AI models.</p>
                     <div class="tags">
-                        <a class="tag" href="https://github.com/Luchik28/Better-YT-Algorithm" target="_blank">Github</a>
-                        <a class="tag" href="https://chromewebstore.google.com/detail/youtube-educational-filte/jhipccnnfgdkjmcbmmahndgboljmhood" target="_blank">Chrome Web Store</a>
+                        <a class="tag" href="https://github.com/Luchik28/AI-Contribution-Calculator" target="_blank">Github</a>
+                        <a class="tag" href="https://ai-contribution-calculator.vercel.app/" target="_blank">Website</a>
                     </div>
                 </div>
                 <div class="grid-card">
-                    <h3>Project 5</h3>
-                    <p>Description of this project and what technologies were used to build it.</p>
+                    <h3>Better Doc</h3>
+                    <p class="date">April - May 2026</p>
+                    <p>An essay writing platform that adds features such as AI feedback on drafts and automatic formatting. It also lets teachers assign essays for students to write, and let them control and see how the students are using the AI features.</p>
                     <div class="tags">
-                        <span class="tag">Tech 1</span>
-                        <span class="tag">Tech 2</span>
+                        <a class="tag" href="https://better-doc-orcin.vercel.app/" target="_blank">Website</a>
                     </div>
                 </div>
                 <div class="grid-card">
-                    <h3>Project 6</h3>
-                    <p>Description of this project and what technologies were used to build it.</p>
+                    <h3>PromoCam</h3>
+                    <p class="date">January 2026</p>
+                    <p>A screen recording app that records mouse position and overlays a higher quality mouse cursor over top in production, allowing for higher quality, more customizable promotional material.</p>
                     <div class="tags">
-                        <span class="tag">Tech 1</span>
-                        <span class="tag">Tech 2</span>
+                        <a class="tag" href="https://github.com/Luchik28/ScreenRecorder" target="_blank">Github</a>
+                        <a class="tag" href="https://promocam.vercel.app/" target="_blank">Website</a>
                     </div>
                 </div>
                 <div class="grid-card">
-                    <h3>Project 7</h3>
-                    <p>Description of this project and what technologies were used to build it.</p>
+                    <h3>AnythingBar</h3>
+                    <p class="date">February - March 2026</p>
+                    <p>An electron app with a spotlight-search type tool to ask AI questions about various topics, like what's on your screen, different files on your computer, and more.</p>
                     <div class="tags">
-                        <span class="tag">Tech 1</span>
-                        <span class="tag">Tech 2</span>
+                        <a class="tag" href="https://anythingbar-landing.vercel.app/" target="_blank">Website</a>
                     </div>
                 </div>
                 <div class="grid-card">
-                    <h3>Project 8</h3>
-                    <p>Description of this project and what technologies were used to build it.</p>
+                    <h3>Canvas Wrapped</h3>
+                    <p class="date">May 2026</p>
+                    <p>A fun tool that grabs a user's Canvas LMS data and presents an overview of their school year that they can share with their friends.</p>
                     <div class="tags">
-                        <span class="tag">Tech 1</span>
-                        <span class="tag">Tech 2</span>
+                        <a class="tag" href="https://canvaswrapped.vercel.app/" target="_blank">Website</a>
+                    </div>
+                </div>
+                <div class="grid-card">
+                    <h3>Drive Italy</h3>
+                    <p class="date">April 2026</p>
+                    <p>An interactive map of Italy that the user drives around to learn about key cities and what they're known for. It was partly inspired by a trip to Italy I did. Done as part of my internship at <a href="https://betterjobfit.org/">Better Job Fit</a>.</p>
+                    <div class="tags">
+                        <a class="tag" href="https://barlow-2.vercel.app/" target="_blank">Website</a>
+                    </div>
+                </div>
+                <div class="grid-card">
+                    <h3>Robotics Telemetry Visualizer</h3>
+                    <p class="date">November 2025 - February 2026</p>
+                    <p>A tool I made for reading telemetry data from the robot during the 2025-26 Vex V5 robotics competition. We won multiple Vex Think Awards for this feature.</p> <!-- The data is sent from the robot over the serial connection to the terminal, where it is picked up by a powershell script and written into a CSV file, that this application reads and displays. -->
+                    <div class="tags">
+                        <a class="tag" href="https://github.com/Luchik28/RobotDataVisualizer" target="_blank">Github</a>
+                    </div>
+                </div>
+                <div class="grid-card">
+                    <h3>Better Youtube Homepage</h3>
+                    <p class="date">October 2025</p>
+                    <p>A chrome browser extension that changes the youtube homepage to a list of video titles to prevent the user from getting distracted by catchy thumbnail images.</p> 
+                    <div class="tags">
+                        <a class="tag" href="https://chromewebstore.google.com/detail/minimalist-youtube-homepa/khbmkkohidohgcnddokodaafaoeafgkc?authuser=0&hl=en" target="_blank">Chrome Web Store</a>
+                        <a class="tag" href="https://github.com/Luchik28/List-YT-homepage" target="_blank">Github</a>
                     </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <script>
-        const track = document.getElementById('carouselTrack');
-        const originalCards = Array.from(track.children);
-        const cardWidth = originalCards[0].offsetWidth + 40; // width + gap
-        
-        // Clone all original cards and append them
-        originalCards.forEach(card => {
-            const clone = card.cloneNode(true);
-            track.appendChild(clone);
-        });
-        
-        // Clone all original cards and prepend them
-        originalCards.forEach(card => {
-            const clone = card.cloneNode(true);
-            track.insertBefore(clone, track.firstChild);
-        });
-        
-        // Start at the middle set of cards
-        track.scrollLeft = cardWidth * originalCards.length;
-        
-        // Handle infinite scroll
-        let isScrolling = false;
-        track.addEventListener('scroll', () => {
-            if (isScrolling) return;
-            
-            const scrollPos = track.scrollLeft;
-            const setWidth = cardWidth * originalCards.length;
-            
-            // If scrolled into the third set (right side clones), jump back to second set
-            if (scrollPos >= setWidth * 2) {
-                isScrolling = true;
-                track.scrollLeft = scrollPos - setWidth;
-                setTimeout(() => { isScrolling = false; }, 50);
-            }
-            
-            // If scrolled into the first set (left side clones), jump forward to second set
-            if (scrollPos < setWidth) {
-                isScrolling = true;
-                track.scrollLeft = scrollPos + setWidth;
-                setTimeout(() => { isScrolling = false; }, 50);
-            }
-        });
-        
-        // Autoscroll functionality
-        let isHovering = false;
-        let autoScrollInterval;
-        
-        function startAutoScroll() {
-            autoScrollInterval = setInterval(() => {
-                if (!isHovering) {
-                    track.scrollLeft += 1;
-                }
-            }, 20);
-        }
-        
-        // Pause autoscroll on hover
-        track.addEventListener('mouseenter', () => {
-            isHovering = true;
-        });
-        
-        track.addEventListener('mouseleave', () => {
-            isHovering = false;
-        });
-        
-        // Start autoscroll
-        startAutoScroll();
-    </script>
+    
+
 </body>
 </html>
