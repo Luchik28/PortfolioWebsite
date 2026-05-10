@@ -41,13 +41,19 @@
         .projects-section h2 {
             font-size: 1.5rem;
             font-weight: 400;
-            margin-bottom: 30px;
+            margin-bottom: 5px;
             color: #555;
+        }
+
+        .projects-section p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
         }
 
         .carousel {
             position: relative;
-            overflow: hidden;
             padding: 20px 0;
         }
 
@@ -58,9 +64,17 @@
             padding: 10px 0;
         }
 
-        .project-card {
+        .card-wrapper {
+            position: relative;
+        }
+
+        .carousel-track > .card-wrapper {
             flex: 1;
             min-width: 0;
+        }
+
+        .project-card {
+            width: 100%;
             height: auto;
             background: #f8f8f8;
             border-radius: 12px;
@@ -125,14 +139,21 @@
         .all-projects-section h2 {
             font-size: 1.5rem;
             font-weight: 400;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
             color: #555;
+        }
+
+        .all-projects-section p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
         }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
 
         .grid-card {
@@ -141,7 +162,7 @@
             padding: 30px;
             display: flex;
             flex-direction: column;
-            min-height: 250px;
+            min-height: 300px;
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
         }
@@ -188,6 +209,65 @@
             color: #fff;
         }
 
+        .project-card, .grid-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: visible;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover, .grid-card:hover {
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card .extra-text, .grid-card .extra-text {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            white-space: normal;
+            word-break: break-word;
+            transition: opacity 0.3s ease, max-height 0.4s ease;
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-card:hover .extra-text, .grid-card:hover .extra-text {
+            opacity: 1;
+            max-height: 700px;
+            margin-top: 10px;
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 0.5s step-end infinite alternate;
+        }
+
+        @keyframes blink {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .dim-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 5;
+        }
+
+        .card-hovered .dim-mask {
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
@@ -216,13 +296,16 @@
 
         <section class="projects-section">
             <h2>Here are some things I've done</h2>
-            
+            <p>These are some of the projects I'm most proud of. Hover on a project to learn more about it. The dates refer to when the project was under active development, although I still fix bugs and support users for these projects.
+
+            </p>
             <div class="carousel">
                 <div class="carousel-track" id="carouselTrack">
                     <div class="project-card">
                         <h3>StudyCal</h3>
                         <p class="date">June 2025 - February 2026</p>
                         <p>A web based Calendar app orientated towards students that organizes your day, and also critiques your schedule, with the goal of creating a more balanced, optimized schedule.</p>
+                        <p class="extra-text" style="font-size: 1.1rem; line-height: 1.8;">StudyCal has more than 200 Monthly Active Users as of January 2026, making it my most used project. It's been particurally gratifying to read all of the reviews and feedback from people who found it to be useful. One thing I learned from this project was about training AI models. I trained my own model to classify calendar events in categories such as "Academic", "Personal", and "Work." I used chatGPT to help generate large quantities of synthetic training data, and tensorflow for the actual training.</p>
                         <div class="tags">
                             <a class="tag" href="https://github.com/Luchik28/StudyCal" target="_blank">Github</a>
                             <a class="tag" href="https://studycal.app/" target="_blank">Website</a>
@@ -232,6 +315,7 @@
                         <h3>Tailor Tab</h3>
                         <p class="date">December 2024 - April 2025</p>
                         <p>A Chrome extension that customizes new tab pages with useful widgets and a personalized design.</p>
+                        <p class="extra-text" style="font-size: 1.1rem; line-height: 1.8;">Tailor Tab has been installed more than 300 times, and has been honored with a featured badge by the Chrome Web Store, as well as multiple 5 star reviews. This was one of the first Chrome extensions I made, and it taught me a lot about user experience and interface design.</p>
                         <div class="tags">
                             <a class="tag" href="https://github.com/Luchik28/New-Tab" target="_blank">Github</a>
                             <a class="tag" href="https://chromewebstore.google.com/detail/tailor-tab/agaifpcfjjklbgjppedbdbmjmindackb" target="_blank">Chrome Web Store</a>
@@ -241,6 +325,7 @@
                         <h3>Education Youtube Algorithm Filter</h3>
                         <p class="date">October 2025</p>
                         <p>A Chrome extention that filters the Youtube Home page for potentially non-educational content, helping users watch more productive content.</p>
+                        <p class="extra-text" style="font-size: 1.1rem; line-height: 1.8;">This Chrome extension has been installed more than 300 times, as of May 2026. One of the biggest challenges I faced working on this project was getting the AI to be fast enough to filter content as the user scrolls through their home page. I solved this by agressively batching the requests, helping speed up the process while saving on tokens.</p>
                         <div class="tags">
                             <a class="tag" href="https://github.com/Luchik28/Better-YT-Algorithm" target="_blank">Github</a>
                             <a class="tag" href="https://chromewebstore.google.com/detail/youtube-educational-filte/jhipccnnfgdkjmcbmmahndgboljmhood" target="_blank">Chrome Web Store</a>
@@ -252,6 +337,7 @@
 
         <section class="all-projects-section">
             <h2>All Projects</h2>
+            <p>These are the rest of my projects. Please keep in mind that I do not maintain most of these projects, and many of the services I use to host them only let me host a few of them at a time, so many of these may not work anymore.</p>
             <div class="projects-grid">
                 <div class="grid-card">
                     <h3>Problem Scraper</h3>
@@ -260,6 +346,15 @@
                     <div class="tags">
                         <a class="tag" href="https://github.com/Luchik28/ProblemScraper" target="_blank">Github</a>
                         <a class="tag" href="https://problem-scraper.vercel.app/" target="_blank">Website</a>
+                    </div>
+                </div>
+                <div class="grid-card">
+                    <h3>Robotics Telemetry Visualizer</h3>
+                    <p class="date">November 2025 - February 2026</p>
+                    <p>A tool I made for reading telemetry data from the robot during the 2025-26 Vex V5 robotics competition. </p>
+                    <p class="extra-text">We won multiple Vex Think Awards, Vex Robotic's award for programming, for this feature. This is just part of the overall system that collected the data. First, the data was collected using sensors on the robot, including rotational sensors on tracking wheels, which recorded linear movement, and an IMU (Inertial Measurement Unit), which recorded rotational movement.That data is sent from the robot over the serial connection to the terminal, where it is picked up by a powershell script and written into a CSV file, that this application reads and displays. This system is useful because the robot uses this data for odemetry, which helps keep it on track when working autonomously. The robot is often innacurate, so knowing where the robot thought at was at all points during it's run made it a lot easier to debug.</p>
+                    <div class="tags">
+                        <a class="tag" href="https://github.com/Luchik28/RobotDataVisualizer" target="_blank">Github</a>
                     </div>
                 </div>
                 <div class="grid-card">
@@ -313,14 +408,6 @@
                     </div>
                 </div>
                 <div class="grid-card">
-                    <h3>Robotics Telemetry Visualizer</h3>
-                    <p class="date">November 2025 - February 2026</p>
-                    <p>A tool I made for reading telemetry data from the robot during the 2025-26 Vex V5 robotics competition. We won multiple Vex Think Awards for this feature.</p> <!-- The data is sent from the robot over the serial connection to the terminal, where it is picked up by a powershell script and written into a CSV file, that this application reads and displays. -->
-                    <div class="tags">
-                        <a class="tag" href="https://github.com/Luchik28/RobotDataVisualizer" target="_blank">Github</a>
-                    </div>
-                </div>
-                <div class="grid-card">
                     <h3>Better Youtube Homepage</h3>
                     <p class="date">October 2025</p>
                     <p>A chrome browser extension that changes the youtube homepage to a list of video titles to prevent the user from getting distracted by catchy thumbnail images.</p> 
@@ -333,7 +420,70 @@
         </section>
     </div>
 
-    
+    <script>
+        const cards = document.querySelectorAll('.project-card, .grid-card');
+        const dimMask = document.createElement('div');
+        dimMask.classList.add('dim-mask');
+        document.body.appendChild(dimMask);
+
+        // Wrap each card so it can grow absolutely without shifting siblings
+        cards.forEach(card => {
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('card-wrapper');
+            card.parentNode.insertBefore(wrapper, card);
+            wrapper.appendChild(card);
+            wrapper.style.height = card.offsetHeight + 'px';
+        });
+
+        cards.forEach(card => {
+            const extraText = card.querySelector('.extra-text');
+
+            // Store original text once, before any mutations
+            if (extraText) {
+                extraText.dataset.original = extraText.textContent.trim();
+                extraText.textContent = '';
+            }
+
+            let typingInterval = null;
+
+            card.addEventListener('mouseenter', () => {
+                document.body.classList.add('card-hovered');
+                card.style.zIndex = 10;
+
+                if (extraText) {
+                    clearInterval(typingInterval);
+                    extraText.innerHTML = '';
+
+                    const span = document.createElement('span');
+                    span.classList.add('typing-cursor');
+                    extraText.appendChild(span);
+
+                    const text = extraText.dataset.original;
+                    let i = 0;
+                    const charsPerTick = 1;
+                    typingInterval = setInterval(() => {
+                        if (i < text.length) {
+                            span.textContent += text[i];
+                            i++;
+                        } else {
+                            clearInterval(typingInterval);
+                            span.classList.remove('typing-cursor');
+                        }
+                    }, 5);
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                document.body.classList.remove('card-hovered');
+                card.style.zIndex = '';
+
+                if (extraText) {
+                    clearInterval(typingInterval);
+                    extraText.innerHTML = '';
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
