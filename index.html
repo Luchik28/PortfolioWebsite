@@ -492,6 +492,13 @@
         dimMask.classList.add('dim-mask');
         document.body.appendChild(dimMask);
 
+        // Detect if device supports touch
+        const isTouchDevice = () => {
+            return (('ontouchstart' in window) ||
+                    (navigator.maxTouchPoints > 0) ||
+                    (navigator.msMaxTouchPoints > 0));
+        };
+
         // Wrap each card so it can grow absolutely without shifting siblings
         cards.forEach(card => {
             const wrapper = document.createElement('div');
@@ -514,7 +521,7 @@
 
             function activateCard() {
                 if (card.classList.contains('active')) return;
-                
+
                 // Deactivate all other cards
                 cards.forEach(c => {
                     if (c !== card && c.classList.contains('active')) {
@@ -553,13 +560,13 @@
             function deactivateCard() {
                 if (!card.classList.contains('active')) return;
                 card.classList.remove('active');
-                
+
                 // Only remove card-hovered if no other cards are active
                 const anyActive = Array.from(cards).some(c => c.classList.contains('active'));
                 if (!anyActive) {
                     document.body.classList.remove('card-hovered');
                 }
-                
+
                 card.style.zIndex = '';
 
                 if (extraText) {
@@ -568,15 +575,17 @@
                 }
             }
 
-            // For desktop hover
-            card.addEventListener('mouseenter', activateCard);
-            card.addEventListener('mouseleave', deactivateCard);
+            // Only use hover on non-touch devices
+            if (!isTouchDevice()) {
+                card.addEventListener('mouseenter', activateCard);
+                card.addEventListener('mouseleave', deactivateCard);
+            }
 
-            // For mobile tap
+            // For mobile tap (or click on desktop if no hover)
             card.addEventListener('click', (e) => {
                 // If it's a link, let it navigate instead of just expanding
                 if (e.target.tagName.toLowerCase() === 'a') return;
-                
+
                 if (card.classList.contains('active')) {
                     deactivateCard();
                 } else {
