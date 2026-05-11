@@ -253,7 +253,8 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .project-card:hover, .grid-card:hover {
+        .project-card:hover, .grid-card:hover,
+        .project-card.active, .grid-card.active {
             transform: scale(1.05);
             z-index: 10;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -271,7 +272,8 @@
             line-height: 1.6;
         }
 
-        .project-card:hover .extra-text, .grid-card:hover .extra-text {
+        .project-card:hover .extra-text, .grid-card:hover .extra-text,
+        .project-card.active .extra-text, .grid-card.active .extra-text {
             opacity: 1;
             max-height: 700px;
             margin-top: 10px;
@@ -308,14 +310,25 @@
             color: rgb(184, 196, 187) !important;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1183px) {
             .hero h1 {
                 font-size: 2rem;
             }
 
+            .carousel-track {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
             .project-card {
-                min-width: 350px;
-                height: 400px;
+                position: relative !important;
+                min-width: unset;
+                height: auto;
+            }
+
+            .grid-card {
+                position: relative !important;
             }
 
             .project-card h3 {
@@ -499,7 +512,19 @@
 
             let typingInterval = null;
 
-            card.addEventListener('mouseenter', () => {
+            function activateCard() {
+                if (card.classList.contains('active')) return;
+                
+                // Deactivate all other cards
+                cards.forEach(c => {
+                    if (c !== card && c.classList.contains('active')) {
+                        c.classList.remove('active');
+                        const cExtra = c.querySelector('.extra-text');
+                        if (cExtra) cExtra.innerHTML = '';
+                    }
+                });
+
+                card.classList.add('active');
                 document.body.classList.add('card-hovered');
                 card.style.zIndex = 10;
 
@@ -513,7 +538,6 @@
 
                     const text = extraText.dataset.original;
                     let i = 0;
-                    const charsPerTick = 1;
                     typingInterval = setInterval(() => {
                         if (i < text.length) {
                             span.textContent += text[i];
@@ -524,17 +548,55 @@
                         }
                     }, 5);
                 }
-            });
+            }
 
-            card.addEventListener('mouseleave', () => {
-                document.body.classList.remove('card-hovered');
+            function deactivateCard() {
+                if (!card.classList.contains('active')) return;
+                card.classList.remove('active');
+                
+                // Only remove card-hovered if no other cards are active
+                const anyActive = Array.from(cards).some(c => c.classList.contains('active'));
+                if (!anyActive) {
+                    document.body.classList.remove('card-hovered');
+                }
+                
                 card.style.zIndex = '';
 
                 if (extraText) {
                     clearInterval(typingInterval);
                     extraText.innerHTML = '';
                 }
+            }
+
+            // For desktop hover
+            card.addEventListener('mouseenter', activateCard);
+            card.addEventListener('mouseleave', deactivateCard);
+
+            // For mobile tap
+            card.addEventListener('click', (e) => {
+                // If it's a link, let it navigate instead of just expanding
+                if (e.target.tagName.toLowerCase() === 'a') return;
+                
+                if (card.classList.contains('active')) {
+                    deactivateCard();
+                } else {
+                    activateCard();
+                }
             });
+        });
+
+        // Click outside to close
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.project-card') && !e.target.closest('.grid-card')) {
+                cards.forEach(c => {
+                    if (c.classList.contains('active')) {
+                        c.classList.remove('active');
+                        const cExtra = c.querySelector('.extra-text');
+                        if (cExtra) cExtra.innerHTML = '';
+                    }
+                });
+                document.body.classList.remove('card-hovered');
+            }
         });
     </script>
 
